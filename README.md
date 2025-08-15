@@ -1,4 +1,4 @@
-<h4 align="center">mihomo-scripts 是一个快速安装脚本。</h4>
+<h4 align="center">mihomo-scripts 是一个快速安装Hysteria2、AnyTLS协议的脚本。</h4>
 
 <p align="center">
 <a href="https://github.com/wjlin0/mihomo-scripts"><img alt="GitHub License" src="https://img.shields.io/github/license/wjlin0/mihomo-scripts"></a>
