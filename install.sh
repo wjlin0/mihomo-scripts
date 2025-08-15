@@ -1,5 +1,47 @@
 #!/usr/bin/env bash
 
+# 安装必要依赖
+install_dependencies() {
+    echo "正在安装必要依赖..."
+    
+    # 检测包管理器并安装依赖
+    if command -v apt &> /dev/null; then
+        apt update -y
+        apt install -y curl openssl wget gzip ufw
+    elif command -v yum &> /dev/null; then
+        yum install -y curl openssl wget gzip
+        # 检查是否是RHEL/CentOS 8+
+        if grep -q 'release 8' /etc/redhat-release || grep -q 'release 9' /etc/redhat-release; then
+            dnf install -y tar
+        fi
+    elif command -v dnf &> /dev/null; then
+        dnf install -y curl openssl wget gzip
+    elif command -v pacman &> /dev/null; then
+        pacman -Sy --noconfirm curl openssl wget gzip
+    elif command -v apk &> /dev/null; then
+        apk add --no-cache curl openssl wget gzip
+    else
+        echo "无法确定包管理器，请手动安装依赖: curl, openssl, wget, gzip"
+        exit 1
+    fi
+    
+    # 检查是否安装成功
+    for cmd in curl openssl wget gzip; do
+        if ! command -v $cmd &> /dev/null; then
+            echo "依赖安装失败: $cmd 未找到"
+            exit 1
+        fi
+    done
+}
+
+# 检查并安装依赖
+for cmd in curl openssl wget gzip; do
+    if ! command -v $cmd &> /dev/null; then
+        install_dependencies
+        break
+    fi
+done
+
 # 创建目录
 mkdir -p /root/.config/mihomo/
 
