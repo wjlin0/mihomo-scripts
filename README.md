@@ -6,6 +6,10 @@
 <a href="https://github.com/wjlin0/mihomo-scripts"><img src="https://img.shields.io/github/last-commit/wjlin0/mihomo-scripts" alt=""></a> 
 </p>
 
+**无需任何提前准备，只需要一台公网IP的`linux vps`即可快速安装**
+
+
+
 📌 **一键安装命令** (复制以下命令使用`root`直接运行):
 
 ```bash
